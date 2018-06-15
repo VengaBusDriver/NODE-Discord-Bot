@@ -102,10 +102,7 @@ if (msg.content.includes('!RPS')) {
     msg.reply('Pong!');
   }
 
-// play videos based on comments
-  if (msg.content.includes('Kill la Kill')) {
-    msg.reply('https://www.youtube.com/watch?v=vyGFM5CGnoo');
-  }
+
 
   // 8BALL
   if (msg.content.includes('!8ball')) {
@@ -130,6 +127,12 @@ if (msg.content.includes('!RPS')) {
       
     }
 }
+
+// play videos based on comments
+if (msg.content.includes('Kill la Kill')) {
+    msg.reply('https://www.youtube.com/watch?v=vyGFM5CGnoo');
+  }
+  
 });
 
 client.login(config.token);
