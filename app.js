@@ -57,9 +57,7 @@ if (msg.content.includes('!RPS')) {
         if (RPSDISC === 'SCISSORS') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
-        } else {
-            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
-        }
+        } 
     }
     if (msg.content.includes('PAPER')) {
          
@@ -75,8 +73,6 @@ if (msg.content.includes('!RPS')) {
         if (RPSDISC === 'ROCK') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
-        } else {
-            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
         }
     }
     if (msg.content.includes('SCISSORS')) {
@@ -93,9 +89,7 @@ if (msg.content.includes('!RPS')) {
         if (RPSDISC === 'PAPER') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
-        } else {
-            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
-        }
+        } 
     }
     
   
