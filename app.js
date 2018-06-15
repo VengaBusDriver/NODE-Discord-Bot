@@ -58,7 +58,7 @@ if (msg.content.includes('!RPS')) {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
         } 
-    }
+    } else
     if (msg.content.includes('PAPER')) {
          
         var RPSUSER = 'PAPER'
@@ -74,7 +74,7 @@ if (msg.content.includes('!RPS')) {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
         }
-    }
+    } else
     if (msg.content.includes('SCISSORS')) {
         
         var RPSUSER = 'SCISSORS'
@@ -90,6 +90,8 @@ if (msg.content.includes('!RPS')) {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
         } 
+    } else {
+        msg.reply('Im sorry, i dont understand: Please use "ROCK", "PAPER" or "SCISSORS" after the command!')
     }
     
   
