@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
-var ok = '0';
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('System Shock')
@@ -44,57 +44,61 @@ if (msg.content.includes('!RPS')) {
          break;
      }
     if (msg.content.includes('ROCK')) {
-         OK = '1'
+        
         var RPSUSER = 'ROCK'
         if (RPSDISC === RPSUSER) {
             msg.reply('TIE!');
             // log tie
-        }
+        } else
         if (RPSDISC === 'PAPER') {
             msg.reply('I WIN WITH: ' + RPSDISC);
             // log loss
-        }
+        } else
         if (RPSDISC === 'SCISSORS') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
+        } else {
+            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
         }
     }
     if (msg.content.includes('PAPER')) {
-         OK = '1'
+         
         var RPSUSER = 'PAPER'
         if (RPSDISC === RPSUSER) {
             msg.reply('TIE!');
             // log tie
-        }
+        } else
         if (RPSDISC === 'SCISSORS') {
             msg.reply('I WIN WITH: ' + RPSDISC);
             // log loss
-        }
+        } else
         if (RPSDISC === 'ROCK') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
+        } else {
+            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
         }
     }
     if (msg.content.includes('SCISSORS')) {
-         OK = '1'
+        
         var RPSUSER = 'SCISSORS'
         if (RPSDISC === RPSUSER) {
             msg.reply('TIE!');
             // log tie
-        }
+        } else
         if (RPSDISC === 'ROCK') {
             msg.reply('I WIN WITH: ' + RPSDISC);
             // log loss
-        }
+        } else
         if (RPSDISC === 'PAPER') {
             msg.reply('YOU WIN WITH: ' + RPSUSER);
             // LOG WIN
+        } else {
+            msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
         }
     }
-    if (OK = '0'){
-        msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
-    }
-   OK = '0';
+    
+  
   }
 
  // PONG
