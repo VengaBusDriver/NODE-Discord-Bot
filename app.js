@@ -1,8 +1,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const config = require('./config.json')
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity('System Shock')
 });
 
 
@@ -20,11 +22,10 @@ client.on('message', msg => {
  //Wednesday 
  switch (new Date().getDay()) {
     
- //   case 5:
-//      msg.react('grinning').then(console.log)
-//        .catch(console.error);
+   case 5:
+   msg.react(config.react_emoji);
        
-//        break;
+       break;
  }
 
 
@@ -58,4 +59,4 @@ client.on('message', msg => {
 }
 });
 
-client.login('');
+client.login(config.token);
