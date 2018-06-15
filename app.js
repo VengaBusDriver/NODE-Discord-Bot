@@ -1,6 +1,18 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
+let request = require('request');
+// XML/JSON REQUEST AJAX
+// USED TO PULL REFERENCE DATA
+
+// var xhReq = new XMLHttpRequest();
+// xhReq.open("GET", yourUrl, false);
+// xhReq.send(null);
+// var jsonObject = JSON.parse(xhReq.responseText);
+
+
+
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -19,7 +31,10 @@ client.on('guildMemberAdd', member => {
   
   
 client.on('message', msg => {
- //Wednesday 
+ 
+ 
+ 
+//Wednesday 
  switch (new Date().getDay()) {
     
    case 5:
@@ -27,6 +42,39 @@ client.on('message', msg => {
        
        break;
  }
+
+// Weather
+if (msg.content.includes('!Weather')) {
+    
+    let apiKey = config.weathtoken;
+    let state = msg.content.substring(9,11);
+    console.log(state);
+    let city = msg.content.slice(11);
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&${state}&units=imperial&appid=${apiKey}`
+
+    
+
+    request(url, function (err, response, body) {
+
+        if(err){
+      
+          console.log('error:', error);
+      
+        } else {
+            let weather = JSON.parse(body)
+          
+          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+          msg.reply(message);
+        }
+      
+      });
+    }
+
+// Help Funtion
+if (msg.content === '!HELP') {
+msg.reply('Welcome to Discord bot ``` Use !RPS "ROCK/PAPER/SCISSORS" to play```');
+}
+
 // Rock Paper Scissors mini-game
 // will add support for SQL later
 if (msg.content.includes('!RPS')) {
@@ -132,7 +180,7 @@ if (msg.content.includes('!RPS')) {
 if (msg.content.includes('Kill la Kill')) {
     msg.reply('https://www.youtube.com/watch?v=vyGFM5CGnoo');
   }
-  
+
 });
 
 client.login(config.token);
