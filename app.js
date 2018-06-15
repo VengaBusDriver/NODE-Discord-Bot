@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require('./config.json')
-
+const config = require('./config.json');
+var ok = '0';
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('System Shock')
@@ -27,17 +27,90 @@ client.on('message', msg => {
        
        break;
  }
-
+// Rock Paper Scissors mini-game
+// will add support for SQL later
+if (msg.content.includes('!RPS')) {
+    var randomnumber=Math.floor((Math.random()*3) + 1);
+    // console.log(randomnumber)
+     switch(randomnumber){
+         case 1:
+         var RPSDISC = 'ROCK'
+         break;
+         case 2:
+         var RPSDISC = 'PAPER'
+         break;
+         case 3:
+         var RPSDISC = 'SCISSORS'
+         break;
+     }
+    if (msg.content.includes('ROCK')) {
+         OK = '1'
+        var RPSUSER = 'ROCK'
+        if (RPSDISC === RPSUSER) {
+            msg.reply('TIE!');
+            // log tie
+        }
+        if (RPSDISC === 'PAPER') {
+            msg.reply('I WIN WITH: ' + RPSDISC);
+            // log loss
+        }
+        if (RPSDISC === 'SCISSORS') {
+            msg.reply('YOU WIN WITH: ' + RPSUSER);
+            // LOG WIN
+        }
+    }
+    if (msg.content.includes('PAPER')) {
+         OK = '1'
+        var RPSUSER = 'PAPER'
+        if (RPSDISC === RPSUSER) {
+            msg.reply('TIE!');
+            // log tie
+        }
+        if (RPSDISC === 'SCISSORS') {
+            msg.reply('I WIN WITH: ' + RPSDISC);
+            // log loss
+        }
+        if (RPSDISC === 'ROCK') {
+            msg.reply('YOU WIN WITH: ' + RPSUSER);
+            // LOG WIN
+        }
+    }
+    if (msg.content.includes('SCISSORS')) {
+         OK = '1'
+        var RPSUSER = 'SCISSORS'
+        if (RPSDISC === RPSUSER) {
+            msg.reply('TIE!');
+            // log tie
+        }
+        if (RPSDISC === 'ROCK') {
+            msg.reply('I WIN WITH: ' + RPSDISC);
+            // log loss
+        }
+        if (RPSDISC === 'PAPER') {
+            msg.reply('YOU WIN WITH: ' + RPSUSER);
+            // LOG WIN
+        }
+    }
+    if (OK = '0'){
+        msg.reply('Sorry i dont undestand please use ROCK, PAPER or SCISSORS after command');
+    }
+   OK = '0';
+  }
 
  // PONG
     if (msg.content === '!Ping') {
     msg.reply('Pong!');
   }
 
+// play videos based on comments
+  if (msg.content.includes('Kill la Kill')) {
+    msg.reply('https://www.youtube.com/watch?v=vyGFM5CGnoo');
+  }
+
   // 8BALL
   if (msg.content.includes('!8ball')) {
     var randomnumber=Math.floor((Math.random()*5) + 1);
-    console.log(randomnumber)
+   // console.log(randomnumber)
     switch(randomnumber){
         case 5:
         msg.reply('YES!');
