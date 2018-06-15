@@ -17,10 +17,23 @@ client.on('guildMemberAdd', member => {
   
   
 client.on('message', msg => {
-  if (msg.content === '!Ping') {
+ //Wednesday 
+ switch (new Date().getDay()) {
+    
+ //   case 5:
+//      msg.react('grinning').then(console.log)
+//        .catch(console.error);
+       
+//        break;
+ }
+
+
+ // PONG
+    if (msg.content === '!Ping') {
     msg.reply('Pong!');
   }
 
+  // 8BALL
   if (msg.content.includes('!8ball')) {
     var randomnumber=Math.floor((Math.random()*5) + 1);
     console.log(randomnumber)
