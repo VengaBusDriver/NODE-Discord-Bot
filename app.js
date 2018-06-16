@@ -2,13 +2,11 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
 let request = require('request');
-// XML/JSON REQUEST AJAX
-// USED TO PULL REFERENCE DATA
 
-// var xhReq = new XMLHttpRequest();
-// xhReq.open("GET", yourUrl, false);
-// xhReq.send(null);
-// var jsonObject = JSON.parse(xhReq.responseText);
+
+const yelp = require('yelp-fusion');
+
+const clienty = yelp.client(config.yelptoken);
 
 
 
@@ -48,31 +46,41 @@ if (msg.content.includes('!Weather')) {
     
     let apiKey = config.weathtoken;
     let state = msg.content.substring(9,11);
-    console.log(state);
+    //console.log(state);
     let city = msg.content.slice(11);
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&${state}&units=imperial&appid=${apiKey}`
 
-    
-
     request(url, function (err, response, body) {
-
         if(err){
-      
           console.log('error:', error);
-      
         } else {
             let weather = JSON.parse(body)
-          
+          console.log(weather);
           let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
           msg.reply(message);
         }
-      
       });
     }
 
+    if (msg.content === '!Yelp') {
+        clienty.search({
+            location:'Maumee, OH'
+          }).then(response => {
+            var randomnumbey=Math.floor((Math.random()*19) + 1);
+            console.log(randomnumbey)
+            msg.reply('Try out: '+ response.jsonBody.businesses[randomnumbey].name);
+          }).catch(e => {
+            console.log(e);
+          });  
+       
+        }
+
+//Blizzard
+
+
 // Help Funtion
 if (msg.content === '!HELP') {
-msg.reply('Welcome to Discord bot ``` Use !RPS "ROCK/PAPER/SCISSORS" to play```');
+//msg.reply('Welcome to Discord bot ``` Use !RPS "ROCK/PAPER/SCISSORS" to play```');
 }
 
 // Rock Paper Scissors mini-game
