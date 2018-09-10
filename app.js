@@ -63,11 +63,11 @@ if (msg.content.includes('!Weather')) {
     }
 // YELP Food Request
     if (msg.content.includes('!Yelp')) {
-        let state = msg.content.substring(6,8);
+        let state = msg.content.substring(6);
     //console.log(state);
     let city = msg.content.slice(9);
         clienty.search({
-            location: city + ',' + state ,
+            location: state ,
             limit:'50',
             categories: 'restaurants, All'
           }).then(response => {
@@ -85,11 +85,11 @@ if (msg.content.includes('!Weather')) {
         }
          //YELP BAR REQUEST
          if (msg.content.includes('!Bar')) {
-            let state = msg.content.substring(5,7);
+            let state = msg.content.substring(5);
         //console.log(state);
         let city = msg.content.slice(8);
             clienty.search({
-                location: city + ',' + state ,
+                location: state ,
                 limit:'50',
                 categories:'bars, All'
                
@@ -109,11 +109,11 @@ if (msg.content.includes('!Weather')) {
             }
         //YELP BAR REQUEST
         if (msg.content.includes('!CBar')) {
-            let state = msg.content.substring(6,8);
+            let state = msg.content.substring(6);
        // console.log(state);
         let city = msg.content.slice(9);
             clienty.search({
-                location: city + ',' + state ,
+                location: state ,
                 limit:'50',
                 categories:'bars, All',
                 price:'1'
