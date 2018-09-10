@@ -2,13 +2,11 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
 let request = require('request');
-// XML/JSON REQUEST AJAX
-// USED TO PULL REFERENCE DATA
 
-// var xhReq = new XMLHttpRequest();
-// xhReq.open("GET", yourUrl, false);
-// xhReq.send(null);
-// var jsonObject = JSON.parse(xhReq.responseText);
+
+const yelp = require('yelp-fusion');
+
+const clienty = yelp.client(config.yelptoken);
 
 
 
@@ -48,31 +46,96 @@ if (msg.content.includes('!Weather')) {
     
     let apiKey = config.weathtoken;
     let state = msg.content.substring(9,11);
-    console.log(state);
+    //console.log(state);
     let city = msg.content.slice(11);
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&${state}&units=imperial&appid=${apiKey}`
 
-    
-
     request(url, function (err, response, body) {
-
         if(err){
-      
           console.log('error:', error);
-      
         } else {
             let weather = JSON.parse(body)
-          
+          //console.log(weather);
           let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
           msg.reply(message);
         }
-      
       });
     }
+// YELP Food Request
+    if (msg.content.includes('!Yelp')) {
+        let state = msg.content.substring(6,8);
+    //console.log(state);
+    let city = msg.content.slice(9);
+        clienty.search({
+            location: city + ',' + state ,
+            limit:'50',
+            categories: 'restaurants, All'
+          }).then(response => {
+            if (response.jsonBody.total > '50') {
+                var randomnumbey=Math.floor((Math.random()*50));
+              } else {
+            var randomnumbey=Math.floor((Math.random()*response.jsonBody.total));
+            }
+           // console.log(randomnumbey)
+            msg.reply('Try out: '+ response.jsonBody.businesses[randomnumbey].name);
+          }).catch(e => {
+            console.log(e);
+          });  
+       
+        }
+         //YELP BAR REQUEST
+         if (msg.content.includes('!Bar')) {
+            let state = msg.content.substring(5,7);
+        //console.log(state);
+        let city = msg.content.slice(8);
+            clienty.search({
+                location: city + ',' + state ,
+                limit:'50',
+                categories:'bars, All'
+               
+              }).then(response => {
+                  if (response.jsonBody.total >= '50') {
+                    var randomnumbey=Math.floor((Math.random()*50));
+                  } else {
+                var randomnumbey=Math.floor((Math.random()*response.jsonBody.total));
+                }
+             //  console.log(randomnumbey)
+             // console.log(response.jsonBody.total)
+                msg.reply('Try out: '+ response.jsonBody.businesses[randomnumbey].name);
+              }).catch(e => {
+                console.log(e);
+              });  
+           
+            }
+        //YELP BAR REQUEST
+        if (msg.content.includes('!CBar')) {
+            let state = msg.content.substring(6,8);
+       // console.log(state);
+        let city = msg.content.slice(9);
+            clienty.search({
+                location: city + ',' + state ,
+                limit:'50',
+                categories:'bars, All',
+                price:'1'
+              }).then(response => {
+                if (response.jsonBody.total >= '50') {
+                    var randomnumbey=Math.floor((Math.random()*50));
+                  } else {
+                var randomnumbey=Math.floor((Math.random()*response.jsonBody.total));
+                }
+               // console.log(randomnumbey)
+                msg.reply('Try out: '+ response.jsonBody.businesses[randomnumbey].name);
+              }).catch(e => {
+                console.log(e);
+              });  
+           
+            }
+//Blizzard
+
 
 // Help Funtion
 if (msg.content === '!HELP') {
-msg.reply('Welcome to Discord bot ``` Use !RPS "ROCK/PAPER/SCISSORS" to play```');
+//msg.reply('Welcome to Discord bot ``` Use !RPS "ROCK/PAPER/SCISSORS" to play```');
 }
 
 // Rock Paper Scissors mini-game
@@ -91,7 +154,7 @@ if (msg.content.includes('!RPS')) {
          var RPSDISC = 'SCISSORS'
          break;
      }
-    if (msg.content.includes('ROCK')) {
+    if (msg.content.toUpperCase().includes('ROCK')) {
         
         var RPSUSER = 'ROCK'
         if (RPSDISC === RPSUSER) {
@@ -107,7 +170,7 @@ if (msg.content.includes('!RPS')) {
             // LOG WIN
         } 
     } else
-    if (msg.content.includes('PAPER')) {
+    if (msg.content.toUpperCase().includes('PAPER')) {
          
         var RPSUSER = 'PAPER'
         if (RPSDISC === RPSUSER) {
@@ -123,7 +186,7 @@ if (msg.content.includes('!RPS')) {
             // LOG WIN
         }
     } else
-    if (msg.content.includes('SCISSORS')) {
+    if (msg.content.toUpperCase().includes('SCISSORS')) {
         
         var RPSUSER = 'SCISSORS'
         if (RPSDISC === RPSUSER) {
