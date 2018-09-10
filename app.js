@@ -42,7 +42,7 @@ client.on('message', msg => {
  }
 
 // Weather
-if (msg.content.includes('!Weather')) {
+if (msg.content.toUpperCase().includes('!WEATHER')) {
     
     let apiKey = config.weathtoken;
     let state = msg.content.substring(9,11);
@@ -62,7 +62,7 @@ if (msg.content.includes('!Weather')) {
       });
     }
 // YELP Food Request
-    if (msg.content.includes('!Yelp')) {
+    if (msg.content.toUpperCase().includes('!YELP')) {
         let state = msg.content.substring(6);
     //console.log(state);
     let city = msg.content.slice(9);
@@ -84,7 +84,7 @@ if (msg.content.includes('!Weather')) {
        
         }
          //YELP BAR REQUEST
-         if (msg.content.includes('!Bar')) {
+         if (msg.content.toUpperCase().includes('!BAR')) {
             let state = msg.content.substring(5);
         //console.log(state);
         let city = msg.content.slice(8);
@@ -108,7 +108,7 @@ if (msg.content.includes('!Weather')) {
            
             }
         //YELP BAR REQUEST
-        if (msg.content.includes('!CBar')) {
+        if (msg.content.toUpperCase().includes('!CBAR')) {
             let state = msg.content.substring(6);
        // console.log(state);
         let city = msg.content.slice(9);
@@ -140,7 +140,7 @@ if (msg.content === '!HELP') {
 
 // Rock Paper Scissors mini-game
 // will add support for SQL later
-if (msg.content.includes('!RPS')) {
+if (msg.content.toUpperCase().includes('!RPS')) {
     var randomnumber=Math.floor((Math.random()*3) + 1);
     // console.log(randomnumber)
      switch(randomnumber){
@@ -216,7 +216,7 @@ if (msg.content.includes('!RPS')) {
 
 
   // 8BALL
-  if (msg.content.includes('!8ball')) {
+  if (msg.content.toUpperCase().includes('!8ball')) {
     var randomnumber=Math.floor((Math.random()*5) + 1);
    // console.log(randomnumber)
     switch(randomnumber){
@@ -240,7 +240,7 @@ if (msg.content.includes('!RPS')) {
 }
 
 // play videos based on comments
-if (msg.content.includes('Kill la Kill')) {
+if (msg.content.toUpperCase().includes('Kill la Kill')) {
     msg.reply('https://www.youtube.com/watch?v=vyGFM5CGnoo');
   }
 
