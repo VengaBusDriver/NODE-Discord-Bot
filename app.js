@@ -137,9 +137,10 @@ if (msg.content.toUpperCase().includes('!WEATHER')) {
         clienty.search({
 
             location: state ,
+limit:'50',
+Radius:'7000',
 
-            limit:'50',
-
+            
             categories: 'restaurants, All'
 
           }).then(response => {
@@ -183,7 +184,7 @@ if (msg.content.toUpperCase().includes('!WEATHER')) {
                 location: state ,
 
                 limit:'50',
-
+Radius:'7000',
                 categories:'bars, All'
 
                
@@ -231,6 +232,7 @@ if (msg.content.toUpperCase().includes('!WEATHER')) {
                 location: state ,
 
                 limit:'50',
+Radius:'7000',
 
                 categories:'bars, All',
 
